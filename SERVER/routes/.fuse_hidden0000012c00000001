@@ -1,0 +1,31 @@
+var express = require('express');
+var router = express.Router();
+var exec = require('child_process').exec;
+var fs = require('fs');
+var os = require('os');
+
+/* GET users listing. */
+router.get('/', function(req, res, next) {
+	console.log(req.headers.code);
+
+	//var jsonText = '{' + os.EOL + '\t"text": "' + origText + '"' + os.EOL + '}';
+	
+	// fs.open('helloworld.cpp', 'a', 666, function( e, id ) {
+ //   	fs.write( id, req.headers + "\n", null, 'utf8', function(){
+ //    fs.close(id, function(){
+ //   	  console.log('file is updated');
+ //   		 });
+ //   	  });
+ //  	});
+
+	fs.writeFile('helloworld.cpp', req.headers.code+os.EOL, function (err) {
+  	if (err) return console.log(err);
+  		console.log('Hello World > helloworld.txt');
+	});
+
+	
+  res.send('respond with a resource');
+});
+
+module.exports = router;
+

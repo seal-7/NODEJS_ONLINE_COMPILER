@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans');
+
+.linedwrap {
+	border: 1px solid #c0c0c0;
+	padding: 3px;
+}
+
+.linedtextarea {
+	padding: 0px;
+	margin: 0px;
+}
+
+.linedtextarea textarea, .linedwrap .codelines .lineno {
+	font-size: 10pt;
+	font-family: 'Droid Sans', sans-serif;
+	line-height: normal !important;
+}
+
+.linedtextarea textarea {
+	padding-right:0.3em;
+	padding-top:0.3em;
+	border: 0;
+}
+
+.linedwrap .lines {
+	margin-top: 0px;
+	width: 50px;
+	float: left;
+	overflow: hidden;
+	border-right: 1px solid #c0c0c0;
+	margin-right: 10px;
+}
+
+.linedwrap .codelines {
+	padding-top: 5px;
+}
+
+.linedwrap .codelines .lineno {
+	color:#AAAAAA;
+	padding-right: 0.5em;
+	padding-top: 0.0em;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.linedwrap .codelines .lineselect {
+	color: red;
+}
+
+.inline-div {
+    display:inline-block;
+}
+.inline-txtarea {
+    resize: none;
+    border : 0.5px;
+    border-color: #4DD0E1;
+    border-style: solid;
+    height:125px;
+    font-family: 'Droid Sans', sans-serif;
+	font-style:bold; 
+	font-size: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 1px;
+  display: inline-block;
+  margin: 1rem;
+  position: relative;
+ }
+.card-5 {
+  box-shadow: 0px 15px 15px rgba(0,0,0,0.19), 0 10px 9px rgba(0,0,0,0.15);
+}
+.card-select {
+  box-shadow: 0px 5px 5px rgba(0,0,0,0.10), 0 5px 4px rgba(0,0,0,0.10);
+}
+
+
+body {
+  font-family: 'Droid Sans', sans-serif;
+background: #00d2ff; /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #00d2ff , #3a7bd5); /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #00d2ff , #3a7bd5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+               
+}
+
+.button {
+  /* Rozmiar i pozycja */
+  display: block;
+  width: 124px;
+  height: 44px;
+  
+  /* Tekst */
+  font-size: 22px;
+  line-height: 44px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  text-shadow: 0 -1px -1px #0f864a;
+  
+  /* Wygląd */
+  background-color: #12a65c;
+  border-radius: 4px;
+  box-shadow: 0 4px 0 #0f864a, 0 5px 5px 1px rgba(0, 0, 0, 0.4);
+  
+  /* Przejście */
+  -webkit-transition: all 0.15s ease-in-out;
+  -moz-transition: all 0.15s ease-in-out;
+  -o-transition: all 0.15s ease-in-out;
+  -ms-transition: all 0.15s ease-in-out;
+  transition: all 0.15s ease-in-out;
+}
+
+.button:hover {
+  text-shadow: 0 -1px -1px #119d57;
+  background-color: #14bd69;
+  box-shadow: 0 4px 0 #119d57, 0 5px 5px 1px rgba(0, 0, 0, 0.4);
+}
+  
+.button:active {
+	margin-top: -18px;
+	box-shadow: none;
+}
+

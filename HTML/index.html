@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Judge</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="js/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+     function called(){
+	//console.log($('#code').val().toString());
+  //console.log($('#code').val().toString());
+  $('#status').val("Compiling ...");
+  localStorage.setItem(code,$('#code').val());
+  //console.log("saved to localStorage");
+	var d = $('#code').val().toString();
+  var input = $('#input').val().toString();
+  var lang= $('#language').val().toString();
+    var flag=false;
+	$.ajax({
+            type: "POST",
+            url: "http://localhost:3000/code",
+            dataType: "json",
+            data: {
+                "code": d,
+                "input": input,
+                "lang": lang
+            },
+            success: function (data) {
+               //alert('Success');
+               if(data.error){
+                console.log(data.error+"error\n"); 
+                $('#output').val(data.error);
+                $('#status').val("Error");
+                document.getElementById("status").style.color = "red";
+               }
+               else{
+               console.log(data.response+"output\n");
+               if(data.response){
+                  $('#output').val(data.response);
+	               var exout = $('#exoutput').val().toString();
+				   var out =  $('#output').val().toString();
+				  // exout += '\n';
+				   if(exout == ""){
+				   	  $('#status').val("Compile and Run Successful "+data.time+" sec");
+				   	  document.getElementById("status").style.color = "#228B22";
+				   }else
+				   if(out == exout ){
+				   	  $('#status').val("Correct Answer "+data.time+" sec");
+				   	  document.getElementById("status").style.color = "#228B22";
+				   }else{
+				   	  $('#status').val("Wrong Answer "+data.time+" sec");
+				   	  document.getElementById("status").style.color = "red";
+				   }
+				}
+                else{
+                  $('#output').val("Output File Too Large/Input-Output Error");
+                  $('#status').val("Error");
+				  document.getElementById("status").style.color = "red";
+                }
+                 
+                 
+              }
+            },
+            error: function () {
+          //   alert('Error');
+             $('#status').val("Network Error ");
+			 document.getElementById("status").style.color = "red";
+				   
+            }
+        });
+   
+}
+
+
+</script>
+<body>
+<div class="jumbotron" align="center" style="padding-left: 25px; padding-right: 25px">
+<h1 style="color: black;">CODE JUDGE</h1>
+</div>
+<div style="padding: 5px;">
+
+    <div class="inline-div" style="padding: 20px;">
+     <b> <p align="center" style="color: white;">Code</p> </b>
+      <textarea class="card card-5 inline-txtarea" spellcheck="false" cols="50" rows="50"  onkeyup="savecode()" id="code" style="padding:2px; height: 500px;width: 600px;" name="code"></textarea>
+    </div>
+    <div class="inline-div">
+      <b><p align="center" style="color: white;">Input</p></b>    
+      <textarea class="card card-5 inline-txtarea" spellcheck="false" cols="50" rows="50" onkeyup="savecode()" id="input" style="padding:2px; height: 500px;width: 270px;" name="input"></textarea>
+    </div>
+    <div class="inline-div">
+     <b> <p align="center" style="color: white;">Expected Output</p> </b>   
+      <textarea class="card card-5 inline-txtarea" spellcheck="false" cols="50" rows="50"  id="exoutput" style="padding:2px; height: 500px;width: 270px;" name="exoutput"></textarea>
+    </div>
+    <div class="inline-div" style="padding: 20px;">
+      <b><p align="center" style="color: white;">Output</p></b>    
+      <textarea readonly="true" class="card card-5 inline-txtarea" spellcheck="false" cols="50" rows="50" id="output" style="padding:2px; height: 400px;width: 600px;" name="output"></textarea>
+    </div>
+    <div class="inline-div">
+      <b><p align="center" style="color: white;">Status</p></b>    
+      <textarea readonly="true" class="card card-5 inline-txtarea" spellcheck="false" cols="50" rows="50" id="status" style="padding:2px; height: 400px;width: 450px;" name="status"></textarea>
+    </div>
+<div style="padding: 20px">
+<select class="card card-select" id="language" style="padding:5px">
+  <option value="cpp">CPP 4.8.1</option>
+  <option value="c">C</option>
+  <option value="python">PYTHON</option>
+  <option value="java">JAVA</option>
+</select>
+<div style="padding: 15px">
+<button type="button" class="button" onclick="called()" value="Submit" style="background-color:yellowgreen;color:white;padding-left:15px;padding-right: 15px; font-size:18px;border:none;">Submit</button>
+</div>
+</div>
+
+</div>
+</body>
+</head>
+</html>
+
